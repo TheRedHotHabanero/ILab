@@ -15,10 +15,10 @@ void greetingsq()
 }
 
 /*Input function*/
-void inputsq(double* a, double* b, double* c)
+void inputsq(double* pa, double* pb, double* pc)
 {
     printf("Write equation coefficients in oder a, b, c: ");
-    scanf("%lf%lf%lf", a, b, c);
+    scanf("%lf%lf%lf", pa, pb, pc);
 }
 
 /*Output function*/
@@ -42,12 +42,12 @@ void output(int solutions, double ans1, double ans2)
 }
 
 /*Linear equation solution function*/
-int LineEq(double a, double b, double* ans1)
+int LineEq(double a, double b, double* pans1)
 {
     int solutions;
     if (a != 0)
     {
-        *ans1 = -b / a;
+        *pans1 = -b / a;
         solutions = ONE_ROOT;
     }
     else if (a == 0 && b != 0)
@@ -59,7 +59,7 @@ int LineEq(double a, double b, double* ans1)
 }
 
 /*Quadratic equation solution function*/
-int QuadrEq(double a, double b, double c, double *ans1, double *ans2)
+int QuadrEq(double a, double b, double c, double* pans1, double* pans2)
 {
     int solutions;
     double D;
@@ -73,8 +73,8 @@ int QuadrEq(double a, double b, double c, double *ans1, double *ans2)
             if (D > 0)
             {
                 sqroot = sqrt(D);
-                *ans1 = (-b + sqroot) / (2 * a);
-                *ans2 = (-b - sqroot) / (2 * a);
+                *pans1 = (-b + sqroot) / (2 * a);
+                *pans2 = (-b - sqroot) / (2 * a);
                 solutions = TWO_ROOTS;
             }
             else
@@ -82,14 +82,14 @@ int QuadrEq(double a, double b, double c, double *ans1, double *ans2)
         }
         else
         {
-            *ans1 = -b / (2 * a);
+            *pans1 = -b / (2 * a);
             solutions = ONE_ROOT;
         }
 
 
     }
     else
-        solutions = LineEq(b, c, &ans1);
+        solutions = LineEq(b, c, pans1);
 
     return (solutions);
 }
@@ -102,10 +102,10 @@ void QuadrEqTests()
     int results = 0; int lenmas = 6;
     double root1 = 0, root2 = 0;
 
-    double masA[] = {1, 1, 1, 0, 0, 0};
-    double masB[] = {-2, -4, -2, 0, 1, 0};
-    double masC[] = {-3, 4, 4, 0, 2, 7};
-    double masRes[] = {2, 1, 0, -1, 1, 0};
+    double masA[] =   { 1,  1,  1,  0, 0, 0};
+    double masB[] =   {-2, -4, -2,  0, 1, 0};
+    double masC[] =   {-3,  4,  4,  0, 2, 7};
+    double masRes[] = { 2,  1,  0, -1, 1, 0};
 
     for (int k = 0; k <= lenmas -1; k++)
     {
