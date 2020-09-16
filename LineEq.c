@@ -5,24 +5,24 @@ void greetingline()
 {
     printf("Hi! This is LineEq v 1.0\n"
            "(c) TheRedHotHabanero\n"
-           "It can solve your lineal equations\n");
+           "Solve your lineal equations!\n");
 }
 
 /*Intput function*/
-float inputline(float *pa, float *pb)
+float inputline(double* a, double* b)
 {
     printf("Write equation coefficients in oder: a, b\n");
-    scanf("%f%f", pa, pb);
+    scanf("%lf%lf", a, b);
 
 }
 
 /*Output function*/
-void output(int solutions, float ans)
+void output(int solutions, double ans)
 {
     if (solutions == 1)
     {
         printf("Number of solutions of the equation: %d\n", solutions);
-        printf("x = %g", ans);
+        printf("x = %lf", ans);
     }
     else if (solutions == 0)
         printf("Equation has no solutions");
@@ -31,12 +31,12 @@ void output(int solutions, float ans)
 }
 
 /*Linear equation solution function*/
-int LineEq(float a, float b, float* pans)
+int LineEq(double a, double b, double* ans)
 {
     int solutions;
     if (a != 0)
     {
-        *pans = -b / a;
+        *ans = -b / a;
         solutions = 1;
     }
     else if (a == 0 && b != 0)
@@ -47,19 +47,42 @@ int LineEq(float a, float b, float* pans)
     return (solutions);
 }
 
+/*Checking the program*/
+void LineEqTests()
+{
+    printf("\n\n\nTime to check the program!\n\n");
+
+    int results = 0; int lenmas = 3;
+    double root = 0;
+
+    double masA[] = {0,1,0};
+    double masB[] = {0,2,7};
+    double masRes[] = {-1,1,0};
+
+    for (int k = 0; k <= lenmas -1; k++)
+    {
+        results = LineEq(masA[k], masB[k], &root);
+        if (results == masRes[k])
+            printf("Test %d Passed \n", (k+1));
+        else
+            printf("Test 1 BAD: solutions = %lf expected, "
+                   "but solutions = %d given\n", masRes[k], results);
+
+    }
+}
+
 int main()
 {
     /*Introducing variables*/
-    float a = 0, b = 0, ans  = 0;
+    double a = 0, b = 0, ans  = 0;
     int solnum = -1;
-    float *pa, *pb, *pans;
-    pa = &a, pb = &b, pans = &ans;
 
     /*Functions call*/
     greetingline();
-    inputline(pa, pb);
-    solnum = LineEq(a, b, pans);
+    inputline(&a, &b);
+    solnum = LineEq(a, b, &ans);
     output(solnum, ans);
+    //LineEqTests();
 
     return (0);
 }
