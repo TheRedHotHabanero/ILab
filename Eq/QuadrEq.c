@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 
+#define ONE_ROOT   1
+#define NO_ROOTS   0
+#define TWO_ROOTS  2
+#define INF_ROOTS -1
+
 /*Greeting*/
 void greetingsq()
 {
@@ -19,14 +24,14 @@ void inputsq(double* a, double* b, double* c)
 /*Output function*/
 void output(int solutions, double ans1, double ans2)
 {
-    if (solutions == 1)
+    if (solutions == ONE_ROOT)
     {
         printf("Number of solutions of the equation: %d\n", solutions);
         printf("x = %lf", ans1);
     }
-    else if (solutions == 0)
+    else if (solutions == NO_ROOTS)
         printf("Equation has no solutions");
-    else if (solutions == 2)
+    else if (solutions == TWO_ROOTS)
     {
         printf("Number of solutions of the equation: %d\n", solutions);
         printf("x1 = %lf, x2 = %lf", ans1, ans2);
@@ -43,12 +48,12 @@ int LineEq(double a, double b, double* ans1)
     if (a != 0)
     {
         *ans1 = -b / a;
-        solutions = 1;
+        solutions = ONE_ROOT;
     }
     else if (a == 0 && b != 0)
-        solutions = 0;
+        solutions = NO_ROOTS;
     else if (a == 0 && b == 0)
-        solutions = -1;
+        solutions = INF_ROOTS;
 
     return (solutions);
 }
@@ -70,15 +75,15 @@ int QuadrEq(double a, double b, double c, double *ans1, double *ans2)
                 sqroot = sqrt(D);
                 *ans1 = (-b + sqroot) / (2 * a);
                 *ans2 = (-b - sqroot) / (2 * a);
-                solutions = 2;
+                solutions = TWO_ROOTS;
             }
             else
-                solutions = 0;
+                solutions = NO_ROOTS;
         }
         else
         {
             *ans1 = -b / (2 * a);
-            solutions = 1;
+            solutions = ONE_ROOT;
         }
 
 
