@@ -12,7 +12,7 @@ void greetingsq()
 /*Input function*/
 void inputsq(double* a, double* b, double* c)
 {
-    printf("Write equation coefficients in oder: a, b, c.\n");
+    printf("Write equation coefficients in oder a, b, c: ");
     scanf("%lf%lf%lf", a, b, c);
 }
 
@@ -32,9 +32,7 @@ void output(int solutions, double ans1, double ans2)
         printf("x1 = %lf, x2 = %lf", ans1, ans2);
     }
     else
-    {
         printf ("The number of solutions to the equation is infinite\n");
-    }
 
 }
 
@@ -99,10 +97,10 @@ void QuadrEqTests()
     int results = 0; int lenmas = 6;
     double root1 = 0, root2 = 0;
 
-    double masA[] = {1,1,1,0,0,0};
-    double masB[] = {-2,-4,-2,0,1,0};
-    double masC[] = {-3,4,4,0,2,7};
-    double masRes[] = {2,1,0,-1,1,0};
+    double masA[] = {1, 1, 1, 0, 0, 0};
+    double masB[] = {-2, -4, -2, 0, 1, 0};
+    double masC[] = {-3, 4, 4, 0, 2, 7};
+    double masRes[] = {2, 1, 0, -1, 1, 0};
 
     for (int k = 0; k <= lenmas -1; k++)
     {
