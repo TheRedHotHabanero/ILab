@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+#define ONE_ROOT   1
+#define NO_ROOTS   0
+#define INF_ROOTS -1
+
 /*Greeting*/
 void greetingline()
 {
@@ -19,30 +23,44 @@ float inputline(double* a, double* b)
 /*Output function*/
 void output(int solutions, double ans)
 {
-    if (solutions == 1)
+    printf("------------------------------------------------------\n");
+    switch (solutions)
     {
-        printf("Number of solutions of the equation: %d\n", solutions);
-        printf("x = %lf", ans);
+        case ONE_ROOT:  printf("Number of solutions of the equation: %d\n", solutions);
+            printf("x = %lf", ans);
+            break;
+
+        case NO_ROOTS:  printf("Equation has no solutions");
+            break;
+
+        case INF_ROOTS: printf ("The number of solutions to the equation is infinite\n");
+            break;
+
+        default:        printf("Error: solutions, QuadrEq");
+            break;
+
     }
-    else if (solutions == 0)
-        printf("Equation has no solutions");
-    else
-        printf("The number of solutions to the equation is infinite");
+    printf("\n------------------------------------------------------");
 }
 
 /*Linear equation solution function*/
-int LineEq(double a, double b, double* ans)
+int LineEq(double a, double b, double* pans1)
 {
     int solutions;
+
     if (a != 0)
     {
-        *ans = -b / a;
-        solutions = 1;
+        *pans1 = -b / a;
+        solutions = ONE_ROOT;
     }
-    else if (a == 0 && b != 0)
-        solutions = 0;
-    else if (a == 0 && b == 0)
-        solutions = -1;
+    else if (b != 0)
+    {
+        solutions = NO_ROOTS;
+    }
+    else
+    {
+        solutions = INF_ROOTS;
+    }
 
     return (solutions);
 }
@@ -52,7 +70,7 @@ void LineEqTests()
 {
     printf("\n\n\nTime to check the program!\n\n");
 
-    int results = 0; int lenmas = 3;
+    int results; int lenmas = 3;
     double root = 0;
 
     double masA[] = {0,1,0};
