@@ -15,9 +15,9 @@
 //---------------------------------------------------------------
 void greetingsq()
 {
-  printf(  "Hi! This is QuadrEq v 2.0\n"
-                  "(c) TheRedHotHabanero\n"
-                  "Solve your quadratic equations!\n\n" );
+  printf(  "Hi! This is QuadrEq v 3.0\n"
+           "(c) TheRedHotHabanero\n"
+           "Solve your quadratic equations!\n\n" );
 }
 //================================================================================
 
@@ -82,7 +82,7 @@ void output(int solutions, double ans1, double ans2)
                     printf("| x1 = %lf, x2 = %lf", ans1, ans2);
                     break;
 
-    case INF_ROOTS: printf ("| The number of solutions to the equation is infinite\n");
+    case INF_ROOTS: printf("| The number of solutions to the equation is infinite\n");
                     break;
 
     default:        printf("| Error: solutions, QuadrEq");
@@ -179,12 +179,13 @@ void QuadrEqTests()
   int results, lenmas = 6;
   double root1 = NAN, root2 = NAN;
 
-  //--TEST----------------------1---2---3---4---5---6---
-  double masA[]           =   { 1,  1,  0,  0,  0,  1};
-  double masB[]           =   {-4, -2,  0,  1,  0, -2};
-  double masC[]           =   { 4,  4,  0,  2,  7, -3};
-  double masResNumSol[]   =   { 1,  0, -1,  1,  0,  2};
-  double masResRoots[]    =   { 2,  0,  0, -2,  0,  2};
+  //--TEST------------------------1----2----3----4----5---6---
+  double masA[]           =   {   1,   1,   0,   0,   0,  1};
+  double masB[]           =   {  -4,  -2,   0,   1,   0, -2};
+  double masC[]           =   {   4,   4,   0,   2,   7, -3};
+  double masResNumSol[]   =   {   1,   0,  -1,   1,   0,  2};
+  double ResRoots1[]      =   {   2,   0,   0,  -2,   0,  3};
+  double ResRoots2[]      =   { NAN, NAN, NAN, NAN, NAN, -1};
 
   for (int k = 0; k <= lenmas -1; k++)
   {
@@ -198,25 +199,25 @@ void QuadrEqTests()
 
     switch (results)
       {
-        case NO_ROOTS:      printf("Test %d Passed \n", (k+1));
-                            break;
+        case NO_ROOTS:  printf("Test %d Passed \n", (k+1));
+                        break;
 
-        case INF_ROOTS:     printf("Test %d Passed \n", (k+1));
-                            break;
+        case INF_ROOTS: printf("Test %d Passed \n", (k+1));
+                        break;
 
-        case ONE_ROOT:      if (root1 * 1.0 == masResRoots[k])
-                                    printf("Test %d Passed \n", (k + 1));
-                            else
-                                    printf("Test %d BAD, wrong root\n", k+1);
-                            break;
+        case ONE_ROOT:  if (root1 * 1.0 == ResRoots1[k])
+                          printf("Test %d Passed \n", (k + 1));
+                        else
+                          printf("Test %d BAD, wrong root\n", k+1);
+                          break;
 
-        case TWO_ROOTS:     if ((root1 + root2) * 1.0 == masResRoots[k])
-                                    printf("Test %d Passed \n", (k + 1));
-                            else
-                                    printf("Test %d BAD, wrong roots. \n", k+1);
-                            break;
+        case TWO_ROOTS: if (root1 * 1.0 == ResRoots1[k] && root2 * 1.0 == ResRoots2[k])
+                          printf("Test %d Passed \n", (k + 1));
+                        else
+                          printf("Test %d BAD, wrong roots. \n", k+1);
+                          break;
 
-        default:            printf ("Error: QuadrEqTest");
+        default:        printf ("Error: QuadrEqTest");
       }
   }
 }
