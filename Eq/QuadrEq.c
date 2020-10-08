@@ -199,23 +199,23 @@ void QuadrEqTests()
 
     switch (results)
       {
-        case NO_ROOTS:  printf("Test %d Passed \n", (k+1));
-                        break;
-
-        case INF_ROOTS: printf("Test %d Passed \n", (k+1));
-                        break;
-
-        case ONE_ROOT:  if (root1 * 1.0 == ResRoots1[k])
-                          printf("Test %d Passed \n", (k + 1));
-                        else
-                          printf("Test %d BAD, wrong root\n", k+1);
+        case NO_ROOTS:    printf("Test %d Passed \n", (k+1));
                           break;
 
-        case TWO_ROOTS: if (root1 * 1.0 == ResRoots1[k] && root2 * 1.0 == ResRoots2[k])
-                          printf("Test %d Passed \n", (k + 1));
-                        else
-                          printf("Test %d BAD, wrong roots. \n", k+1);
+        case INF_ROOTS:   printf("Test %d Passed \n", (k+1));
                           break;
+
+        case ONE_ROOT:    if (root1 * 1.0 == ResRoots1[k])
+                            printf("Test %d Passed \n", (k + 1));
+                          else
+                            printf("Test %d BAD, wrong root\n", k+1);
+                            break;
+
+        case TWO_ROOTS:   if (root1 * 1.0 == ResRoots1[k] && root2 * 1.0 == ResRoots2[k])
+                            printf("Test %d Passed \n", (k + 1));
+                          else
+                            printf("Test %d BAD, wrong roots. \n", k+1);
+                            break;
 
         default:        printf ("Error: QuadrEqTest");
       }
