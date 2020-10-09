@@ -50,11 +50,6 @@ int zero_is_zero(double n)
   return fabs(n) < FAULT;
 }
 
-/*int is_eq(double num1, double num2, double eps = 0)
-{
-  return fabs(num1 - num2) <= eps;
-}*/
-
 //================================================================================
 
 
